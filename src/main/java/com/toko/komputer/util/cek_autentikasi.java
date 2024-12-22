@@ -20,7 +20,7 @@ public class cek_autentikasi implements Filter {
     private List<String> allowedURIs;
 
     public void init(FilterConfig config) throws ServletException {
-        // Add /login (and other allowed URLs) to the list of allowed URIs
+        // list of allowed URIs
         allowedURIs = Arrays.asList("/login.jsp", "/login", "/authenticate", "/static/css/", "/static/js/", "/static/images/");
     }
 
@@ -31,7 +31,7 @@ public class cek_autentikasi implements Filter {
         HttpSession session = httpRequest.getSession(false);
 
         String loginURI = httpRequest.getContextPath() + "/login.jsp";
-        String productURI = httpRequest.getContextPath() + "/products"; // Hanya gunakan /products tanpa ekstensi .jsp
+        String productURI = httpRequest.getContextPath() + "/products";
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = httpRequest.getRequestURI().equals(loginURI);
         

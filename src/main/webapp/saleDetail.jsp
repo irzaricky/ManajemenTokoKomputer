@@ -10,9 +10,6 @@
     <title>Sale Detail</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-        body { /* Style code remains the same */ }
-    </style>
 </head>
 <body>
     <!-- Include Navbar -->
@@ -23,7 +20,7 @@
         <%
             Sale sale = (Sale) request.getAttribute("sale");
             List<SaleDetail> saleDetails = (List<SaleDetail>) request.getAttribute("saleDetails");
-            User user = (User) request.getAttribute("user"); // Fix here: Get single User object
+            User user = (User) request.getAttribute("user");
             if (sale != null) {
         %>
             <table class="table table-bordered">
@@ -40,7 +37,7 @@
                     <td><%= sale.getTotalAmount() %></td>
                 </tr>
                 <tr>
-                    <th>User Name</th> <!-- Use user.getUsername() -->
+                    <th>User Name</th>
                     <td><%= user.getUsername() %></td>
                 </tr>
             </table>

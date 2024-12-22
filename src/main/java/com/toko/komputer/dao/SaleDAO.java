@@ -78,7 +78,7 @@ public class SaleDAO {
                 return rs.getInt(1);
             }
         }
-        return -1; // Jika tidak ada hasil
+        return -1;
     }
 
     public void updateSale(Sale sale) {

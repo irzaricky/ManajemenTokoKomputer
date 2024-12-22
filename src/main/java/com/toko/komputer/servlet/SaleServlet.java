@@ -45,14 +45,14 @@ public class SaleServlet extends HttpServlet {
             
             for (SaleDetail saleDetail : saleDetails) {
                 String productName = productDAO.getProductNameById(saleDetail.getProductId());
-                saleDetail.setProductName(productName); // Add productName to SaleDetail model
+                saleDetail.setProductName(productName);
             }
             
 
             // Pass data to JSP
             request.setAttribute("sale", sale);
             request.setAttribute("saleDetails", saleDetails);
-            request.setAttribute("user", user); // Fix here: Use single User object
+            request.setAttribute("user", user); 
 
             // Forward to the JSP page
             request.getRequestDispatcher("/saleDetail.jsp").forward(request, response);

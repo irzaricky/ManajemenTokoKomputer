@@ -123,7 +123,7 @@ button.remove-product:hover {
     border-color: #0056b3;
     font-weight: 600;
     margin-bottom: 30px;
-    padding: 6px 12px; /* Mengurangi padding */
+    padding: 6px 12px;
 }
 
 #add-product:hover {

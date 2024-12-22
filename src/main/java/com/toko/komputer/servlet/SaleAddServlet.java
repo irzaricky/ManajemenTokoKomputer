@@ -51,7 +51,7 @@ public class SaleAddServlet extends HttpServlet {
         Connection conn = null;
         try {
             conn = database_koneksi.getConnection();
-            conn.setAutoCommit(false); // Mulai transaksi
+            conn.setAutoCommit(false);
 
             // Simpan data ke tabel sales
             Sale sale = new Sale();
@@ -86,7 +86,7 @@ public class SaleAddServlet extends HttpServlet {
                 saleDetailDAO.addSaleDetail(conn, saleDetail);
             }
 
-            conn.commit(); // Commit transaksi
+            conn.commit(); 
             response.sendRedirect("sales");
         } catch (Exception e) {
             if (conn != null) {
@@ -117,7 +117,7 @@ public class SaleAddServlet extends HttpServlet {
             parsedDate = dateFormat.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
-            parsedDate = new Date(); // Set to current date if parsing fails
+            parsedDate = new Date();
         }
         return new Timestamp(parsedDate.getTime());
     }

@@ -13,18 +13,19 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa; /* Background putih */
-            color: #212529; /* Warna teks abu gelap */
+            background-color: #f8f9fa;
+            color: #212529;
             font-family: Arial, sans-serif;
             min-height: 100vh;
         }
 
         .container {
-            background-color: #ffffff; /* Background putih untuk form */
-            border-radius: 15px; /* Membuat sudut melengkung */
+            background-color: #ffffff; 
+            border-radius: 15px; 
             padding: 30px;
             margin-top: 30px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Shadow lembut */
+            max-width: 800px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
             animation: fadeIn 1s ease-in-out;
         }
 
@@ -40,13 +41,13 @@
         }
 
         h1 {
-            color: #007bff; /* Warna biru lembut */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+            color: #007bff; 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
         }
 
         .form-label {
             font-weight: bold;
-            color: #495057; /* Warna teks label abu gelap */
+            color: #495057; 
         }
 
         .form-control {
@@ -77,6 +78,12 @@
             background-color: #218838;
             border-color: #1e7e34;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -87,51 +94,64 @@
         <h1 class="text-center mb-4">Add New Product</h1>
         <form action="productAdd" method="post">
             <input type="hidden" name="action" value="add">
-            <div class="mb-3">
-                <label for="productName" class="form-label">Product Name:</label>
-                <input type="text" id="productName" name="productName" class="form-control" placeholder="Enter product name" required>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="productName" class="form-label">Product Name:</label>
+                    <input type="text" id="productName" name="productName" class="form-control" placeholder="Enter product name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="price" class="form-label">Price:</label>
+                    <input type="number" step="0.01" id="price" name="price" class="form-control" placeholder="Enter product price" required>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="productDescription" class="form-label">Description:</label>
-                <textarea id="productDescription" name="productDescription" class="form-control" placeholder="Enter product description" rows="4" required></textarea>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="productDescription" class="form-label">Description:</label>
+                    <textarea id="productDescription" name="productDescription" class="form-control" placeholder="Enter product description" rows="4" required></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label for="stock" class="form-label">Stock:</label>
+                    <input type="number" id="stock" name="stock" class="form-control" placeholder="Enter stock quantity" required>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Price:</label>
-                <input type="number" step="0.01" id="price" name="price" class="form-control" placeholder="Enter product price" required>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="categoryId" class="form-label">Category:</label>
+                    <select id="categoryId" name="categoryId" class="form-control" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <%
+                            List<ProductCategory> categories = (List<ProductCategory>) request.getAttribute("categories");
+                            for (ProductCategory category : categories) {
+                        %>
+                            <option value="<%= category.getCategoryId() %>"><%= category.getCategoryName() %></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="typeId" class="form-label">Type:</label>
+                    <select id="typeId" name="typeId" class="form-control" required>
+                        <option value="" disabled selected>Select Type</option>
+                        <%
+                            List<ProductType> productTypes = (List<ProductType>) request.getAttribute("productTypes");
+                            for (ProductType type : productTypes) {
+                        %>
+                            <option value="<%= type.getTypeId() %>"><%= type.getTypeName() %></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="stock" class="form-label">Stock:</label>
-                <input type="number" id="stock" name="stock" class="form-control" placeholder="Enter stock quantity" required>
+
+            <div class="button-container">
+                <a href="products" class="btn btn-secondary">Back to Product List</a>
+                <button type="submit" class="btn btn-success">Add Product</button>
             </div>
-            <div class="mb-3">
-                <label for="typeId" class="form-label">Type:</label>
-                <select id="typeId" name="typeId" class="form-control" required>
-                    <option value="" disabled selected>Select Type</option>
-                    <%
-                        List<ProductType> productTypes = (List<ProductType>) request.getAttribute("productTypes");
-                        for (ProductType type : productTypes) {
-                    %>
-                        <option value="<%= type.getTypeId() %>"><%= type.getTypeName() %></option>
-                    <%
-                        }
-                    %>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="categoryId" class="form-label">Category:</label>
-                <select id="categoryId" name="categoryId" class="form-control" required>
-                    <option value="" disabled selected>Select Category</option>
-                    <%
-                        List<ProductCategory> categories = (List<ProductCategory>) request.getAttribute("categories");
-                        for (ProductCategory category : categories) {
-                    %>
-                        <option value="<%= category.getCategoryId() %>"><%= category.getCategoryName() %></option>
-                    <%
-                        }
-                    %>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-success w-100">Add Product</button>
         </form>
     </div>
 

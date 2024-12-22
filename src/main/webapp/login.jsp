@@ -19,13 +19,13 @@
             font-family: Arial, sans-serif;
         }
         .login-container {
-            background: rgba(0, 0, 0, 0.5); /* Black with transparency */
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
-            backdrop-filter: blur(10px); /* Glass effect */
-            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); 
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Glass shadow */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             width: 100%;
             max-width: 400px;
             color: white;
@@ -34,14 +34,14 @@
             color: white;
         }
         .form-control {
-            background: rgba(255, 255, 255, 0.2); /* Transparent input background */
+            background: rgba(255, 255, 255, 0.2); 
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             border-radius: 10px;
             transition: all 0.3s ease;
         }
         .form-control:focus {
-            background: rgba(255, 255, 255, 0.3); /* Slightly brighter on focus */
+            background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
@@ -49,7 +49,7 @@
             font-weight: bold;
         }
         .btn-primary {
-            background: linear-gradient(90deg, rgba(76, 175, 80, 1), rgba(56, 142, 60, 1)); /* Gradient button */
+            background: linear-gradient(90deg, rgba(76, 175, 80, 1), rgba(56, 142, 60, 1));
             border: none;
             font-weight: bold;
             border-radius: 10px;
