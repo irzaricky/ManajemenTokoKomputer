@@ -31,6 +31,7 @@ public class cek_autentikasi implements Filter {
         HttpSession session = httpRequest.getSession(false);
 
         String loginURI = httpRequest.getContextPath() + "/login.jsp";
+        String productURI = httpRequest.getContextPath() + "/products"; // Hanya gunakan /products tanpa ekstensi .jsp
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = httpRequest.getRequestURI().equals(loginURI);
         
@@ -42,14 +43,33 @@ public class cek_autentikasi implements Filter {
         
         boolean isPostLoginRequest = requestURI.equals(contextPath + "/login") && httpRequest.getMethod().equalsIgnoreCase("POST");
 
+        // If user is logged in and the requested URI is the login page, redirect to product page
+        if (loggedIn && loginRequest) {
+            httpResponse.sendRedirect(productURI); // Redirect to product page if already logged in
+            return; // Don't continue filter chain after redirect
+        }
+
         // Allow requests that are login page, already logged in, or allowed static resources
         if (loggedIn || loginRequest || allowedRequest || isPostLoginRequest) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(loginURI);  // Redirect to login.jsp if not logged in
+            // Handle /products
+            if (requestURI.equals(productURI)) {
+                if (loggedIn) {
+                    httpResponse.sendRedirect(productURI); // Redirect to product page if logged in
+                } else {
+                    httpResponse.sendRedirect(loginURI);  // Redirect to login page if not logged in
+                }
+            } else {
+                // If user is logged in, redirect to the product page, otherwise login page
+                if (loggedIn) {
+                    httpResponse.sendRedirect(productURI); // Redirect to product page if logged in
+                } else {
+                    httpResponse.sendRedirect(loginURI);  // Redirect to login page if not logged in
+                }
+            }
         }
     }
-
 
     public void destroy() {
     }
