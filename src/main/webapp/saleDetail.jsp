@@ -3,6 +3,7 @@
 <%@ page import="com.toko.komputer.model.Sale" %>
 <%@ page import="com.toko.komputer.model.SaleDetail" %>
 <%@ page import="com.toko.komputer.model.User" %>
+<%@ page import="com.toko.komputer.util.PriceFormatter" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
                 </tr>
                 <tr>
                     <th>Total Amount</th>
-                    <td><%= sale.getTotalAmount() %></td>
+                    <td><%= PriceFormatter.formatPrice(sale.getTotalAmount()) %></td>
                 </tr>
                 <tr>
                     <th>User Name</th>
@@ -58,7 +59,7 @@
                     <tr>
                         <td><%= saleDetail.getProductName() %></td>
                         <td><%= saleDetail.getQuantity() %></td>
-                        <td><%= saleDetail.getPrice() %></td>
+                        <td><%= PriceFormatter.formatPrice(saleDetail.getPrice()) %></td>
                     </tr>
                     <%
                             }

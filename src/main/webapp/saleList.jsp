@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.toko.komputer.model.Sale" %>
 <%@ page import="com.toko.komputer.model.User" %>
+<%@ page import="com.toko.komputer.util.PriceFormatter" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,7 +106,7 @@
                     <tr>
                         <td><%= sale.getSaleId() %></td>
                         <td><%= sale.getSaleDate() %></td>
-                        <td><%= sale.getTotalAmount() %></td>
+                        <td><%= PriceFormatter.formatPrice(sale.getTotalAmount()) %></td>
                         <td><%= userName %></td>
                         <td>
                             <div class="d-flex justify-content-center gap-2">

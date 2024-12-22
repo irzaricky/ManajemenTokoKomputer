@@ -3,6 +3,7 @@
 <%@ page import="com.toko.komputer.model.Product" %>
 <%@ page import="com.toko.komputer.model.ProductCategory" %>
 <%@ page import="com.toko.komputer.model.ProductType" %>
+<%@ page import="com.toko.komputer.util.PriceFormatter" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +15,17 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa; 
-            color: #212529; 
+            background-color: #f8f9fa;
+            color: #212529;
             min-height: 100vh;
             font-family: Arial, sans-serif;
         }
         .container {
-            background-color: #ffffff; 
+            background-color: #ffffff;
             border-radius: 15px;
             padding: 30px;
             margin-top: 30px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
         }
         @keyframes fadeIn {
@@ -38,17 +39,17 @@
             }
         }
         table {
-            background-color: #ffffff; 
-            color: #212529; 
+            background-color: #ffffff;
+            color: #212529;
             border-radius: 10px;
             overflow: hidden;
         }
         .table-dark th {
             background-color: #6c757d;
-            color: #ffffff; 
+            color: #ffffff;
         }
         .table-hover tbody tr:hover {
-            background-color: rgba(108, 117, 125, 0.1); 
+            background-color: rgba(108, 117, 125, 0.1);
         }
         a.btn-primary, a.btn-secondary, button.btn-danger {
             border-radius: 5px;
@@ -68,7 +69,7 @@
         }
         h1 {
             color: #007bff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
         .add-product-button {
             text-align: right;
@@ -122,7 +123,7 @@
                         <td><%= product.getProductId() %></td>
                         <td><%= product.getProductName() %></td>
                         <td><%= product.getProductDescription() %></td>
-                        <td><%= product.getPrice() %></td>
+                        <td><%= PriceFormatter.formatPrice(product.getPrice()) %></td>
                         <td><%= product.getStock() %></td>
                         <td><%= typeName %></td>
                         <td><%= categoryName %></td>
